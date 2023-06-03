@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {TodoHeader} from "./components/TodoHeader"
+import {TodoForm} from "./components/TodoForm"
+import {TodoList} from "./components/TodoList";
+import {initServices} from "./services";
+import {useState} from "react";
+import {ServicesContext} from "./contexts"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [services] = useState(initServices())
+
+    return (
+        <ServicesContext.Provider value={services}>
+            <div className="flex-container">
+                <TodoHeader/>
+                <TodoForm/>
+                <TodoList/>
+            </div>
+        </ServicesContext.Provider>
+    );
+
 }
 
 export default App;
