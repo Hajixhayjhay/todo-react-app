@@ -30,6 +30,36 @@ export const useTodos = () => {
         , [setTodos, todosService])
 
 
+    // const uploadTodo = useCallback(async (completed, title) => {
+    //     const tempTodo = {
+    //         id: JSON.stringify(Date.now()),
+    //         title: title,
+    //         completed: completed
+    //     }
+    //     console.log('tempTodo' + JSON.stringify(tempTodo))
+    //     const originalTodos = [...todos]
+    //     console.log('originalTodos' + JSON.stringify(originalTodos))
+    //
+    //
+    //     try {
+    //         const fakeUploadedTodos = [...todos, tempTodo]
+    //         console.log('fakeUploadedTodos' + JSON.stringify(fakeUploadedTodos))
+    //
+    //         setTodos(fakeUploadedTodos)
+    //
+    //
+    //         const uploadedTodo = await todosService.uploadTodo(tempTodo)
+    //         console.log('uploadedTodo' + JSON.stringify(uploadedTodo))
+    //         const updatedTodos = [...todos, uploadedTodo]
+    //         console.log('updatedTodos' + JSON.stringify(updatedTodos))
+    //         setTodos(updatedTodos)
+    //
+    //     } catch (e) {
+    //         console.log('originalTodos' + JSON.stringify(originalTodos))
+    //         setTodos(originalTodos)
+    //     }
+    // }, [setTodos, todos, todosService])
+
     const updateTodo = useCallback(async (id, title) => {
 
         const foundTodo = todos.find(todo => todo.id === id)
@@ -67,7 +97,7 @@ export const useTodos = () => {
     }, [setTodos, todos, todosService])
 
 
-    const completeTodo = useCallback(async (id,checked) => {
+    const completeTodo = useCallback(async (id, checked) => {
 
         const originalTodos = [...todos]
         const foundTodo = todos.find(todo => todo.id === id)
@@ -105,7 +135,8 @@ export const useTodos = () => {
         updatingId,
         updateTodo,
         removeTodo,
-        completeTodo
+        completeTodo,
+        // uploadTodo
     }
 }
 

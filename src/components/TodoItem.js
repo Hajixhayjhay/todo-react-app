@@ -9,20 +9,23 @@ const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
     //it is nullish operator like OR operator but triggers only on NULL or UNDEFINED
     const [title, setTitle] = useState(todoItem.title ?? "")
 
-    const debouncedDelete = debounce(onRemove,1000)
+    const debouncedDelete = debounce(onRemove, 1000)
 
 
     const buttons = (
         <>
             {isEditMode ? (
-                <button className="save-button" onClick={async () => {
-                    await onUpdate(title)
-                    setEditMode(false)
-                }}>Save</button>
+                <button className="save-button"
+                        onClick={async () => {
+                            await onUpdate(title)
+                            setEditMode(false)
+                        }}>Save
+                </button>
             ) : (
-                <button className="edit-button" onClick={(event) => {
-                    setEditMode(true)
-                }}>Edit
+                <button className="edit-button"
+                        onClick={() => {
+                            setEditMode(true)
+                        }}>Edit
                 </button>
             )}
             <button className="delete" onClick={debouncedDelete}>Delete
@@ -30,19 +33,21 @@ const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
         </>)
 
 
-
-
     return (
         <div className="todo-item">
             <div className="todo-item-checkbox">
-                <input type="checkbox" checked={todoItem.completed}
-                       onChange={(event) => onCompleted(event.target.checked)}/>
+                <input
+                    type="checkbox" checked={todoItem.completed}
+                    onChange={(event) => onCompleted(event.target.checked)}/>
             </div>
             <div className="todo-item-title">
                 {isEditMode ? (
-                    <input type="text" name="title" value={title} onChange={e => {
+                    <input
+                        type="text"
+                        value={title} onChange={e => {
                         setTitle(e.target.value)
-                    }}/>
+                    }
+                    }/>
                 ) : (<span>{todoItem.title}</span>)}
             </div>
             <div className="todo-item-buttons">

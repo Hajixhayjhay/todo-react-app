@@ -16,12 +16,20 @@ export class TodosService {
         return response.data.id
     }
 
+
+    async uploadTodo(todo) {
+        await new Promise(resolve => setTimeout(() => resolve(), 2000))
+        console.log(JSON.stringify(this.urlTodos))
+        console.log(JSON.stringify(todo))
+        const response =  await axios.post(this.urlTodos , todo)
+        return response.data
+    }
+
+
     async updateTodo(todo) {
         await new Promise(resolve => setTimeout(() => resolve(), 2000))
         const response =  await axios.put(this.urlTodos + `/${todo.id}`, todo)
         return response.data
     }
-
-
 }
 
