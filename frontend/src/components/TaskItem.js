@@ -2,15 +2,22 @@ import React, {useState} from "react";
 import {Spinner} from "./Spinner";
 import {debounce} from 'lodash'
 
-const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
+const TaskItem = ({taskItem, onUpdate, loading, onRemove, onCompleted}) => {
 
     const [isEditMode, setEditMode] = useState(false)
     //if this value null of undefined => fallback with the value from the right side
     //it is nullish operator like OR operator but triggers only on NULL or UNDEFINED
-    const [title, setTitle] = useState(todoItem.title ?? "")
+    const [title, setTitle] = useState(taskItem.title ?? "")
+
+    const [isCompleted, setCompleted] = useState(taskItem.completed === "true")
 
     const debouncedDelete = debounce(onRemove, 1000)
 
+    const handleComplete = (event) => {
+        const result = event.target.checked
+        onCompleted(JSON.stringify(result))
+        setCompleted(result)
+    }
 
     const buttons = (
         <>
@@ -37,8 +44,8 @@ const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
         <div className="todo-item">
             <div className="todo-item-checkbox">
                 <input
-                    type="checkbox" checked={todoItem.completed}
-                    onChange={(event) => onCompleted(event.target.checked)}/>
+                    type="checkbox" checked={isCompleted}
+                    onChange={(event) => handleComplete(event)}/>
             </div>
             <div className="todo-item-title">
                 {isEditMode ? (
@@ -48,7 +55,7 @@ const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
                         setTitle(e.target.value)
                     }
                     }/>
-                ) : (<span>{todoItem.title}</span>)}
+                ) : (<span>{taskItem.title}</span>)}
             </div>
             <div className="todo-item-buttons">
                 {loading ? (<Spinner/>) : buttons}
@@ -57,4 +64,4 @@ const TodoItem = ({todoItem, onUpdate, loading, onRemove, onCompleted}) => {
     )
 }
 
-export default TodoItem;
+export default TaskItem;

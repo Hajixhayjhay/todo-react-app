@@ -1,23 +1,22 @@
 import axios from "axios";
 
-export class TodosService {
+export class TasksService {
 
-    urlTodos = 'https://6479c6dda455e257fa63bf4b.mockapi.io/todos'
+    urlTodos = 'http://localhost:4000/tasks'
 
-    async getTodos() {
+    async getTasks() {
         const response = await axios.get(this.urlTodos)
         return response.data
     }
 
-
-    async deleteTodo(id){
+    async deleteTask(id){
         await new Promise(resolve => setTimeout(() => resolve(), 1000))
+        console.log(id)
         const response = await axios.delete(this.urlTodos+`/${id}`)
         return response.data.id
     }
 
-
-    async uploadTodo(todo) {
+    async uploadTask(todo) {
         await new Promise(resolve => setTimeout(() => resolve(), 2000))
         console.log(JSON.stringify(this.urlTodos))
         console.log(JSON.stringify(todo))
@@ -26,9 +25,9 @@ export class TodosService {
     }
 
 
-    async updateTodo(todo) {
+    async updateTask(todo) {
         await new Promise(resolve => setTimeout(() => resolve(), 2000))
-        const response =  await axios.put(this.urlTodos + `/${todo.id}`, todo)
+        const response =  await axios.patch(this.urlTodos + `/${todo.id}`, todo)
         return response.data
     }
 }

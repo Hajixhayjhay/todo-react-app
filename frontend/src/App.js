@@ -1,11 +1,12 @@
 import './App.css';
 import React from 'react'
-import {TodoHeader} from "./components/TodoHeader"
-import {TodoForm} from "./components/TodoForm"
-import {TodoList} from "./components/TodoList";
+import {TaskHeader} from "./components/TaskHeader"
+import {TaskForm} from "./components/TaskForm"
+import {TasksList} from "./components/TasksList";
 import {initServices} from "./services";
 import {useState} from "react";
 import {ServicesContext} from "./contexts"
+import {TasksManager} from "./components/TasksManager";
 
 
 function App() {
@@ -15,9 +16,8 @@ function App() {
     return (
         <ServicesContext.Provider value={services}>
             <div className="flex-container">
-                <TodoHeader/>
-                <TodoForm/>
-                <TodoList/>
+                <TaskHeader/>
+                <TasksManager/>
             </div>
         </ServicesContext.Provider>
     );

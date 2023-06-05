@@ -3,22 +3,19 @@ import React, {useState} from "react";
 import {debounce} from "lodash";
 
 
-export const TodoForm = () => {
+export const TaskForm = ({uploadTask}) => {
 
     // const {uploadTodo} = useTodos()
     const [isCompleted, setCompleted] = useState(false)
     const [title, setTitle] = useState('')
 
-    // const debouncedUploadTodo = debounce(() => uploadTodo(isCompleted,title),1000)
+    const debouncedUploadTodo = debounce(() => uploadTask(isCompleted,title),1000)
 
 
-    const handleAddTodo = async () => {
-        // await debouncedUploadTodo();
-        console.log('debouncedUploadTodo finished')
+    const handleAddTask = async () => {
+        await debouncedUploadTodo();
         setCompleted(false);
-        console.log('setCompleted(false);')
         setTitle('');
-        console.log('setTitle(\'\');')
     };
 
     return (
@@ -33,7 +30,7 @@ export const TodoForm = () => {
                        setTitle(event.target.value)
                    }}
             />
-            <button onClick={handleAddTodo}>Add</button>
+            <button onClick={handleAddTask}>Add</button>
         </div>
     )
 };
