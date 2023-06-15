@@ -3,11 +3,26 @@
 
 This repository contains a full stack Todo List application built using React on the front-end and Node.js with Express on the back-end. The application allows users to create, update, and delete tasks in a simple and intuitive manner.
 
-
-
+## Add a task
 <p align="center">
-  <img src="https://github.com/Asnvir/todo-react-app/assets/51398263/1e3c491b-a32a-460a-8015-c7816ce8776a
-" width="200" height ="350"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/1.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/2.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/3.jpg" width="450" height="170"/>
+</p>
+
+
+## Edit task
+<p align="center">
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/5.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/6.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/7.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/8.jpg" width="450" height="170"/>
+</p>
+
+## Delete task
+<p align="center">
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/9.jpg" width="450" height="170"/>
+  <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/10.jpg" width="450" height="170"/>
 </p>
 
 
