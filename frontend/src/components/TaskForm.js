@@ -1,19 +1,25 @@
 import React, {useState} from "react";
 
 import {debounce} from "lodash";
+import {useAddTask} from "../hooks/useAddTask";
+import {Spinner} from "./Spinner";
 
 
-export const TaskForm = ({uploadTask}) => {
+export const TaskForm = () => {
+
+    const {
+        error,
+        isLoading,
+        uploadTask
+    } = useAddTask()
 
     // const {uploadTodo} = useTodos()
     const [isCompleted, setCompleted] = useState(false)
     const [title, setTitle] = useState('')
 
-    const debouncedUploadTodo = debounce(() => uploadTask(isCompleted,title),1000)
-
 
     const handleAddTask = async () => {
-        await debouncedUploadTodo();
+        await uploadTask(isCompleted, title);
         setCompleted(false);
         setTitle('');
     };
@@ -30,7 +36,7 @@ export const TaskForm = ({uploadTask}) => {
                        setTitle(event.target.value)
                    }}
             />
-            <button onClick={handleAddTask}>Add</button>
+            {isLoading ? <Spinner/> : <button onClick={handleAddTask}>Add</button>}
         </div>
     )
 };

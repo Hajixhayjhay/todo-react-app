@@ -4,6 +4,7 @@ import React from "react";
 import {useTasks} from "../hooks/useTasks";
 
 
+
 export const TasksManager = () => {
 
     const {
@@ -21,11 +22,10 @@ export const TasksManager = () => {
     } = useTasks()
 
 
-
     return (
         <>
             <TaskForm
-                uploadTask={uploadTask}
+                onSubmit={uploadTask}
             />
             <TasksList
                 tasks={tasks}

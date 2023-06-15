@@ -1,12 +1,10 @@
 import './App.css';
-import React from 'react'
+import React, {useState} from 'react'
 import {TaskHeader} from "./components/TaskHeader"
-import {TaskForm} from "./components/TaskForm"
-import {TasksList} from "./components/TasksList";
 import {initServices} from "./services";
-import {useState} from "react";
 import {ServicesContext} from "./contexts"
 import {TasksManager} from "./components/TasksManager";
+import {TaskProvider} from "./components/TaskProvider";
 
 
 function App() {
@@ -17,7 +15,9 @@ function App() {
         <ServicesContext.Provider value={services}>
             <div className="flex-container">
                 <TaskHeader/>
-                <TasksManager/>
+                <TaskProvider>
+                    <TasksManager/>
+                </TaskProvider>
             </div>
         </ServicesContext.Provider>
     );

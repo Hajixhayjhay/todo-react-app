@@ -20,15 +20,15 @@ const getTasksFromDB = async () => {
     }
 }
 
-const createTaskInDB = async (task) => {
+const createTaskInDB = async (taskData) => {
 
     try {
         const data = await fs.promises.readFile(dataFilePath, 'utf8');
         const jsonData = JSON.parse(data);
         const taskID = uuid.v4()
-        // const newTask = {
-        //     ...task, id: taskID
-        // }
+        const task = {
+            ...taskData, id: taskID
+        }
 
         jsonData.tasks.push(task)
         await fs.promises.writeFile(dataFilePath, JSON.stringify(jsonData))

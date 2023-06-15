@@ -1,30 +1,40 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {Spinner} from "./Spinner";
 import {debounce} from 'lodash'
+import {useTask} from "../hooks/useTask";
 
-const TaskItem = ({taskItem, onUpdate, loading, onRemove, onCompleted}) => {
+const TaskItem = ({task}) => {
+
+    const {
+        error,
+        isLoading,
+        updateTask,
+        removeTask,
+        completeTask
+    } = useTask(task.id)
 
     const [isEditMode, setEditMode] = useState(false)
     //if this value null of undefined => fallback with the value from the right side
     //it is nullish operator like OR operator but triggers only on NULL or UNDEFINED
-    const [title, setTitle] = useState(taskItem.title ?? "")
-
-    const [isCompleted, setCompleted] = useState(taskItem.completed === "true")
-
-    const debouncedDelete = debounce(onRemove, 1000)
+    const [title, setTitle] = useState(task.title ?? "")
+    const debouncedDelete = debounce(removeTask, 1000)
+    // const debouncedComplete = debounce(() => completeTask(JSON.stringify(result)),1000)
 
     const handleComplete = (event) => {
         const result = event.target.checked
-        onCompleted(JSON.stringify(result))
-        setCompleted(result)
+        completeTask(result)
+        console.log(`result: ${result}`)
+
+        console.log({event, result})
     }
+
 
     const buttons = (
         <>
             {isEditMode ? (
                 <button className="save-button"
                         onClick={async () => {
-                            await onUpdate(title)
+                            await updateTask(title)
                             setEditMode(false)
                         }}>Save
                 </button>
@@ -44,8 +54,8 @@ const TaskItem = ({taskItem, onUpdate, loading, onRemove, onCompleted}) => {
         <div className="todo-item">
             <div className="todo-item-checkbox">
                 <input
-                    type="checkbox" checked={isCompleted}
-                    onChange={(event) => handleComplete(event)}/>
+                    type="checkbox" checked={task.completed}
+                    onChange={handleComplete}/>
             </div>
             <div className="todo-item-title">
                 {isEditMode ? (
@@ -55,10 +65,10 @@ const TaskItem = ({taskItem, onUpdate, loading, onRemove, onCompleted}) => {
                         setTitle(e.target.value)
                     }
                     }/>
-                ) : (<span>{taskItem.title}</span>)}
+                ) : (<span>{task.title}</span>)}
             </div>
             <div className="todo-item-buttons">
-                {loading ? (<Spinner/>) : buttons}
+                {isLoading ? (<Spinner/>) : buttons}
             </div>
         </div>
     )

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TaskItem from "./TaskItem";
+import {useGetTasks} from "../hooks/useGetTasks";
+import {TasksContext} from "../contexts";
 
-export const TasksList = ({tasks,isLoadingTasks,errorTasks,updateTask,updatingId,removingId,removeTask,completeTask}) => {
+export const TasksList = ({
+                              updateTask,
+                              updatingId,
+                              removingId,
+                              removeTask,
+                              completeTask
+                          }) => {
 
-    if (isLoadingTasks) {
+    const {tasks, error, isLoading} = useGetTasks()
+
+    if (isLoading) {
         return <span>Is Loading</span>
     }
 
-    if (errorTasks) {
+    if (error) {
         return <span>error</span>
     }
 
@@ -16,20 +26,7 @@ export const TasksList = ({tasks,isLoadingTasks,errorTasks,updateTask,updatingId
             {tasks.map(task =>
                 <li key={task.id}>
                     <TaskItem
-                        taskItem={task}
-                        onUpdate={(title) => updateTask(task.id, title)}
-                        loading={updatingId === task.id || removingId === task.id}
-                        onRemove={() => removeTask(task.id)}
-                        onCompleted={(checked) => completeTask(task.id,checked)}
-                        // errorRemovingTodo={errorRemovingTodo}
-                        // onEdit={(id,title,completed) => editTodo(id, title, completed)}
-                        // onRemove={() => removeTodo(task.id)}
-                        // errorDeletingTodo={errorDeletingTodo}
-                        // isDeletingTodo={isDeletingTodo}
-                        // errorEditingTodo={errorEditingTodo}
-                        // isEditingTodo={isEditingTodo}
-                        // setIsEditingTodo={setIsEditingTodo}
-
+                        task={task}
                     />
                 </li>)}
         </ul>
