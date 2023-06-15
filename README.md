@@ -26,6 +26,50 @@ This repository contains a full stack Todo List application built using React on
   <img src="https://github.com/Asnvir/todo-react-app/blob/main/images/10.jpg" width="450" height="170"/>
 </p>
 
+## File structure
+```
+
+|-- backend
+|   |-- constants.js
+|   |-- controllers
+|   |   `-- taskController.js
+|   |-- model
+|   |   |-- db.json
+|   |   `-- task.js
+|   |-- routes
+|   |   `-- tasks.js
+|   `-- server.js
+
+
+|-- frontend
+|   |-- README.md
+|   `-- src
+|       |-- App.css
+|       |-- App.js
+|       |-- components
+|       |   |-- Spinner.js
+|       |   |-- TaskForm.js
+|       |   |-- TaskHeader.js
+|       |   |-- TaskItem.js
+|       |   |-- TaskProvider.js
+|       |   |-- TasksList.js
+|       |   `-- TasksManager.js
+|       |-- contexts.js
+|       |-- hooks
+|       |   |-- useAddTask.js
+|       |   |-- useGetTasks.js
+|       |   |-- useTask.js
+|       |   `-- useTasks.js
+|       |-- index.css
+|       |-- index.js
+|       |-- reportWebVitals.js
+|       `-- services
+|           |-- index.js
+|           `-- TasksService.js
+`-- README.md
+
+
+```
 
 ## Features
 - Create new tasks with a title and description.
