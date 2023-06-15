@@ -6,7 +6,7 @@ This repository contains a full stack Todo List application built using React on
 
 
 <p align="center">
-  <img src="![image](https://github.com/Asnvir/todo-react-app/assets/51398263/87753917-0a18-4b4e-a5fd-199a268498f5)
+  <img src="https://github.com/Asnvir/todo-react-app/assets/51398263/1e3c491b-a32a-460a-8015-c7816ce8776a
 " width="200" height ="350"/>
 </p>
 
