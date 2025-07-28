@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: todo-app-backend
+    ports:
+      - "5000:5000"
+    # env_file:
+    #   - .env
+    volumes:
+      - ./backend:/app
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: todo-app-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+
+  # db:
+  #   image: postgres:alpine
+  #   ports:
+  #     - "5432:5432"
+  #   env_file:
+  #     - ./.env
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD", "pg_isready", "-U", "postgres"]
+  #     interval:  30s
+  #     timeout:  30s
+  #     retries:  3
+
+volumes:
+  pgdata:
